@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
    // [Header("Movement parameters")];
     [Range(0.01f, 20.0f)] [SerializeField] private float moveSpeed = 0.1f;
     [Range(0.01f, 20.0f)] [SerializeField] private float jumpForce = 6.0f;
+    private Vector2 startPosition;
     //[Space(10)];
     private Rigidbody2D rigidBody;
     private Animator animator;
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        startPosition = this.transform.position;
     }
     bool IsGrounded()
     {
@@ -103,6 +105,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Bonus achieved");
             col.gameObject.SetActive(false);
         }
+        else if (col.CompareTag("Enemy") && transform.position.y > col.gameObject.transform.position.y)
+        {
+            Debug.Log("Killed an enemy");
+            col.gameObject.SetActive(false);
+        } 
     }
     void Flip()
     {

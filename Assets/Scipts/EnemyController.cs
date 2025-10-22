@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class EnemyController : MonoBehaviour
     private float startPositionX;
     private bool IsmovingRight = false;
     private bool IsFacingRight = false;
+    // private bool IsDead = true;
     void Start()
     {
         
@@ -44,24 +46,37 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    if (IsmovingRight)
-    {
-        moveRight();
-
-        if (transform.position.x >= startPositionX + moveRange)
+        if (IsmovingRight)
         {
-            IsmovingRight = false;
+            moveRight();
+
+            if (transform.position.x >= startPositionX + moveRange)
+            {
+                IsmovingRight = false;
+            }
+        }
+        else
+        {
+            moveLeft();
+
+            if (transform.position.x <= startPositionX - moveRange)
+            {
+                IsmovingRight = true;
+            }
         }
     }
-    else
+    void OnTriggerEnter2D(Collider2D col)
     {
-        moveLeft();
-
-        if (transform.position.x <= startPositionX - moveRange)
+        if (col.CompareTag("Player") && col.gameObject.transform.position.y  > transform.position.y)
         {
-            IsmovingRight = true;
+          animator.SetBool("IsDead", true);
+          StartCoroutine( KillOnAnimationEnd() );
         }
     }
-}
+    IEnumerator KillOnAnimationEnd()
+    {
+        yield return new WaitForSeconds(0.2f);
+        gameObject.SetActive(false);
+    }
 
 }
