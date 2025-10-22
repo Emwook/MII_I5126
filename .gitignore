@@ -1,0 +1,67 @@
+# ========== Unity Core ==========
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+MemoryCaptures/
+Recordings/
+
+# Ignore Unity package cache (recreated automatically)
+Packages/PackageCache/
+
+# ========== IDE / OS ==========
+.vscode/
+.idea/
+.vs/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# macOS and Windows junk
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ========== User & Local Settings ==========
+UserSettings/
+*.prefs
+
+# ========== Builds & Exports ==========
+*.apk
+*.aab
+*.xcodeproj
+*.xcworkspace
+*.ipa
+*.exe
+*.app
+*.msi
+*.zip
+*.tar
+*.gz
+
+# ========== Auto-generated metadata ==========
+*.unitypackage
+*.asset.meta
+*.pidb.meta
+*.pdb
+*.mdb
+
+# ========== Visual Studio Code history ==========
+.history/
+
+# ========== Crash / profiler / debug ==========
+*.stacktrace
+*.dmp
+*.mem
+*.crash
