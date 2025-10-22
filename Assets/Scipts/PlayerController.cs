@@ -4,10 +4,11 @@ public class PlayerController : MonoBehaviour
 {
    // [Header("Movement parameters")];
     [Range(0.01f, 20.0f)] [SerializeField] private float moveSpeed = 0.1f;
-   
     [Range(0.01f, 20.0f)] [SerializeField] private float jumpForce = 6.0f;
     //[Space(10)];
     private Rigidbody2D rigidBody;
+    private Animator animator;
+    private bool IsRunning = false;
     [SerializeField] private LayerMask groundLayer;
     const float rayLength = 0.2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,23 +16,28 @@ public class PlayerController : MonoBehaviour
     {
         
     }
-
+ 
     // Update is called once per frame
     void Update()
     {
+        IsRunning = false;
         if (Input.GetKey(KeyCode.RightArrow)){
             transform.Translate(moveSpeed * Time.deltaTime, 0.0f, 0.0f, Space.World);
+            IsRunning = true;
         }
         if (Input.GetKey(KeyCode.LeftArrow)){
            transform.Translate(-moveSpeed * Time.deltaTime, 0.0f, 0.0f, Space.World);
+           IsRunning = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(moveSpeed * Time.deltaTime, 0.0f, 0.0f, Space.World);
+            IsRunning = true;
         }
         if ( Input.GetKey(KeyCode.A))
         {
             transform.Translate(-moveSpeed * Time.deltaTime, 0.0f, 0.0f, Space.World);
+            IsRunning = true;
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -42,12 +48,14 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
-
+        animator.SetBool("IsGrounded", IsGrounded());
+        animator.SetBool("IsRunning", IsRunning);
         Debug.DrawRay(transform.position, rayLength * Vector3.down, Color.white, 0.2f, false);
     }
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
     bool IsGrounded()
     {
@@ -58,6 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrounded())
         {
+            animator.SetBool("IsGrounded", false);
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             Debug.Log("jumping");
         }
