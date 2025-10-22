@@ -98,6 +98,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Game Over - Fall");
         }
+        else if (col.CompareTag("Bonus"))
+        {
+            Debug.Log("Bonus achieved");
+            col.gameObject.SetActive(false);
+        }
     }
     void Flip()
     {
