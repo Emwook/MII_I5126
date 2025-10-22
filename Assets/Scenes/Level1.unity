@@ -328,7 +328,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.017105408, y: -0.039474048}
+  m_Offset: {x: 0, y: -0.025}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1467,7 +1467,7 @@ Transform:
   m_GameObject: {fileID: 1331469507}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.624, y: -0.055, z: 0}
+  m_LocalPosition: {x: 1.624, y: -0.069, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3269,11 +3269,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 847906524055526872, guid: f674f15ce4217442ea6997931601d6db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.168
+      value: -0.066
       objectReference: {fileID: 0}
     - target: {fileID: 847906524055526872, guid: f674f15ce4217442ea6997931601d6db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.138
+      value: 0.938
       objectReference: {fileID: 0}
     - target: {fileID: 847906524055526872, guid: f674f15ce4217442ea6997931601d6db, type: 3}
       propertyPath: m_LocalPosition.z
