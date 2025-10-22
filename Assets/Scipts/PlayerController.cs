@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidBody;
     private Animator animator;
     private bool IsRunning = false;
+    private bool IsFacingRight = true;
     [SerializeField] private LayerMask groundLayer;
     const float rayLength = 0.2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,20 +25,36 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow)){
             transform.Translate(moveSpeed * Time.deltaTime, 0.0f, 0.0f, Space.World);
             IsRunning = true;
+            if (!IsFacingRight)
+            {
+                Flip();
+            }
         }
         if (Input.GetKey(KeyCode.LeftArrow)){
            transform.Translate(-moveSpeed * Time.deltaTime, 0.0f, 0.0f, Space.World);
            IsRunning = true;
+           if (IsFacingRight)
+            {
+                Flip();
+            }
         }
         if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(moveSpeed * Time.deltaTime, 0.0f, 0.0f, Space.World);
             IsRunning = true;
+            if (!IsFacingRight)
+            {
+                Flip();
+            }
         }
         if ( Input.GetKey(KeyCode.A))
         {
             transform.Translate(-moveSpeed * Time.deltaTime, 0.0f, 0.0f, Space.World);
             IsRunning = true;
+            if (IsFacingRight)
+            {
+                Flip();
+            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -81,5 +98,12 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Game Over - Fall");
         }
+    }
+    void Flip()
+    {
+        IsFacingRight = !IsFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
