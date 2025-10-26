@@ -2,25 +2,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   // [Header("Movement parameters")];
     [Range(0.01f, 20.0f)] [SerializeField] private float moveSpeed = 0.1f;
     [Range(0.01f, 20.0f)] [SerializeField] private float jumpForce = 6.0f;
     private Vector2 startPosition;
-    //[Space(10)];
     private Rigidbody2D rigidBody;
     private Animator animator;
     private bool IsRunning = false;
     private bool IsFacingRight = true;
     [SerializeField] private LayerMask groundLayer;
     const float rayLength = 0.2f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
- 
-    // Update is called once per frame
-    void Update()
+     void Update()
     {
         IsRunning = false;
         if (Input.GetKey(KeyCode.RightArrow)){
@@ -105,10 +100,18 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Bonus achieved");
             col.gameObject.SetActive(false);
         }
-        else if (col.CompareTag("Enemy") && transform.position.y > col.gameObject.transform.position.y)
+        else if (col.CompareTag("Enemy"))
         {
-            Debug.Log("Killed an enemy");
-            col.gameObject.SetActive(false);
+            if (transform.position.y > col.gameObject.transform.position.y)
+            {
+                Debug.Log("Killed an enemy");
+                col.gameObject.SetActive(false);
+            }
+            else
+            {
+                transform.position = startPosition;
+                Debug.Log("Game Over");
+            }
         } 
     }
     void Flip()

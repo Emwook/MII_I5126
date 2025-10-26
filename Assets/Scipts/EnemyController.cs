@@ -10,7 +10,6 @@ public class EnemyController : MonoBehaviour
     private float startPositionX;
     private bool IsmovingRight = false;
     private bool IsFacingRight = false;
-    // private bool IsDead = true;
     void Start()
     {
         
@@ -43,7 +42,6 @@ public class EnemyController : MonoBehaviour
             Flip();
         }
     }
-    // Update is called once per frame
     void Update()
     {
         if (IsmovingRight)
